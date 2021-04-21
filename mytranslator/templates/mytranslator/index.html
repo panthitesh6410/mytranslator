@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'mytranslator/css/bootstrap.min.css' %}">
+    <script src="{% static 'mytranslator/js/bootstrap.min.js' %}"></script>
+    <title>MyTranslator</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand navbar-light bg-info text-center">
+        <div class="navbar-collapse">
+            <h2 class="text-light" style="font-family: verdana;">MyTranslator</h2>
+        </div>
+    </nav>
+
+    {% if display_flag == True %}
+        <div class="container alert alert-warning mt-4 text-center">
+            <h3 class="text-dark mt-3">{{result}}</h3><hr>
+            <h6 class="text-secondary">Original Text - {{text}}</h6>
+            <h6 class="text-secondary">Source Language - {{source}}</h6>
+            <h6 class="text-secondary">Destination Language - {{destination}}</h6>
+        </div>
+    {% endif %}
+    
+    <div class="container mt-4">
+        <form action="" method="POST" class="form">
+            {% csrf_token %}
+            <div class="form-group mt-4">
+                <textarea class="form-control" name="text" id="main_text" placeholder="Enter the text here" required></textarea>
+            </div>
+            <div class="form-group mt-4">
+                <!-- <label for="source">Select Source Language </label> -->
+                <select name="source" id="source" required class="form-control">
+                    <option value="" selected disabled class="form-control">Select Source Language</option>
+                    {% for i in languages %}
+                        <option value="{{i}}" class="form-control">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mt-4">
+                <!-- <label for="destination">Select Destination Language </label> -->
+                <select name="destination" id="destination" required class="form-control">
+                    <option value="" selected disabled class="form-control">Select Destination Language</option>
+                    {% for i in languages %}
+                        <option value="{{i}}" class="form-control">{{i}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group mt-4 text-center">
+                <input type="submit" value="CONVERT" class="btn btn-info">
+            </div>
+        </form>
+    
+    </div>
+
+    <footer class="footer text-center fixed-bottom">
+        @COPYWRITE ISSUE 2021
+    </footer>
+
+    <script src="{% static 'mytranslator/js/jquery.js' %}"></script>
+
+</body>
+</html>

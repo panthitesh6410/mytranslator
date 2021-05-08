@@ -18,7 +18,7 @@ playsound==1.2.2
 pypiwin32==223
 pyttsx3==2.90
 pytz==2021.1
-pywin32==300
+pywin32==223
 requests==2.25.1
 rfc3986==1.4.0
 six==1.15.0

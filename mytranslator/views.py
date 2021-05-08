@@ -33,8 +33,8 @@ def index(request):
         # speech ----------------------------------
         try:
             tts = gtts.gTTS(result.text)
-            tts.save(str(text)+".mp3")
-            playsound(str(text)+".mp3")
+            tts.save("audio_files/"+str(text)+".mp3")
+            playsound("audio_files/"+str(text)+".mp3")
         except Exception as e:
             print("e = ", e)
         #------------------------------------------

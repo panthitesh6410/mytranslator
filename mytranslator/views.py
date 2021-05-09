@@ -6,7 +6,10 @@ from gtts import gTTS
 import gtts
 from playsound import playsound
 import os
-
+import random
+import string
+import speech_recognition as sr
+import pyttsx3
 
 def index(request):
     display_flag = False
@@ -33,8 +36,9 @@ def index(request):
         # speech ----------------------------------
         try:
             tts = gtts.gTTS(result.text)
-            tts.save("audio_files/"+str(text)+".mp3")
-            playsound("audio_files/"+str(text)+".mp3")
+            random_str = ''.join(random.choices(string.ascii_uppercase+string.digits, k=10))    # generating random string -
+            tts.save("audio_files/"+str(random_str)+".mp3")
+            playsound("audio_files/"+str(random_str)+".mp3")
         except Exception as e:
             print("e = ", e)
         #------------------------------------------

@@ -16,76 +16,16 @@
 
     <nav class="navbar navbar-expand navbar-light bg-info text-center">
         <div class="navbar-collapse">
-            <h2 class="text-light" style="font-family: verdana;">MyTranslator</h2>
+            <div class="container"><h2 class="text-light" style="font-family: verdana;">MyTranslator</h2></div>
         </div>
     </nav>
 
-    {% if display_flag == True %}
-        <div class="container alert alert-warning mt-4 text-center">
-            <h3 class="text-dark mt-3">{{result}}</h3><hr>
-            <h6 class="text-secondary">Original Text - {{text}}</h6>
-            <h6 class="text-secondary">Source Language - {{source}}</h6>
-            <h6 class="text-secondary">Destination Language - {{destination}}</h6>
-        </div>
-    {% endif %}
-    
-    <div class="container mt-4">
-        <form action="" method="POST" class="form">
-            {% csrf_token %}
-            <div class="form-group mt-4">
-                <textarea class="form-control" name="text" id="main_text" placeholder="Enter the text here" required></textarea>
-            </div>
-            <div class="form-group mt-4">
-                <!-- <label for="source">Select Source Language </label> -->
-                <select name="source" id="source" required class="form-control">
-                    <option value="" selected disabled class="form-control">Select Source Language</option>
-                    {% for i in languages %}
-                        <option value="{{i}}" class="form-control">{{i}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group mt-4">
-                <!-- <label for="destination">Select Destination Language </label> -->
-                <select name="destination" id="destination" required class="form-control">
-                    <option value="" selected disabled class="form-control">Select Destination Language</option>
-                    {% for i in languages %}
-                        <option value="{{i}}" class="form-control">{{i}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group mt-4 text-center">
-                <input type="submit" value="CONVERT TEXT" class="btn btn-info">
-            </div>
-        </form>
-    
-    </div>
+   <div class="container mt-5  text-center">
+       <a href="{% url 'source_text' %}"><button class="btn btn-warning mt-5">TEXT TO SPEECH & TEXT</button></a>
+   </div>
 
-    <div class="container mt-5" style="background-color: black;"><hr style="border-width:3px;"></div>
-
-    <div class="container text-center">
-        <img class="mt-4" src="{% static 'mytranslator/img/mic.jpg' %}" height="200" alt=""><br>
-        <form action="" method="POST" class="form">
-            {% csrf_token %}
-            <div class="form-group mt-4">
-                <select name="source" id="source" required class="form-control">
-                    <option value="" selected disabled class="form-control">Select Source Language</option>
-                    {% for i in languages %}
-                        <option value="{{i}}" class="form-control">{{i}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group mt-4">
-                <select name="destination" id="destination" required class="form-control">
-                    <option value="" selected disabled class="form-control">Select Destination Language</option>
-                    {% for i in languages %}
-                        <option value="{{i}}" class="form-control">{{i}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="form-group mt-4 text-center">
-                <input type="submit" value="CONVERT SPEECH" class="btn btn-danger mt-0">
-            </div>
-        </form>
+    <div class="container mt-5  text-center">
+        <a href="{% url 'source_speech' %}"><button class="btn btn-danger mt-5">SPEECH TO SPEECH & TEXT</button></a>
     </div>
 
     <footer class="footer text-center fixed-bottom mt-5">
@@ -94,5 +34,6 @@
 
     <script src="{% static 'mytranslator/js/jquery.js' %}"></script>
 
+    
 </body>
 </html>

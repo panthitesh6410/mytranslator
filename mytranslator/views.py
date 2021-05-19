@@ -15,6 +15,8 @@ def index(request):
 
 def source_speech(request):
     display_flag = False
+    text=""
+    result=""
     d = {}
     d.update({'display_flag': display_flag})
     languages = googletrans.LANGUAGES
@@ -22,26 +24,35 @@ def source_speech(request):
     if request.method == 'POST':
         display_flag = True
         d.update({'display_flag': display_flag})
-        source = request.POST['source']
-        print('source ---------- ', source)
-        d.update({'source': source})
-        destination = request.POST['destination']
-        print("destination ---------------- ", destination)
-        d.update({'destination': destination})
+        s = request.POST['source']
+        s = str(s)
+        s = s.lower()
+        print('source ---------- ', s)
+        d.update({'source': s})
+        de = request.POST['destination']
+        de = str(de)
+        de = de.lower()
+        print("destination ---------------- ", de)
+        d.update({'destination': de})
         r = sr.Recognizer()
         with sr.Microphone() as source:
             print("Say Something")
             audio = r.listen(source)
             print("Time Over, Thanks")
         try:
+            print("source type === ", type(source))
             text = r.recognize_google(audio, language = str(source))
-            print("text - ", text);
-        except:
-            pass;
+            d.update({'text': text})
+            print("text - ", text)
+        except Exception as e:
+            print("exception here 1 - ", e)
         translator = Translator()
-        result = translator.translate(text, src=source, dest=destination)
-        print(result.text)
-        d.update({'result': result})
+        try:
+            result = translator.translate(text, src=s, dest=de)
+            print(result.text)
+            d.update({'result': result.text})
+        except Exception as e:
+            print("main erro is - ", e)
         #------------------------------------------
         # speech ----------------------------------
         try:

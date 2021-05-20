@@ -24,7 +24,7 @@ packaging==20.9
 pipwin==0.5.1
 playsound==1.2.2
 psycopg2==2.8.6
-PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
+PyAudio @ PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
 pyjsparser==2.7.1
 pyparsing==2.4.7
 pypiwin32==223
